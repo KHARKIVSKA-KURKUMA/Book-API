@@ -37,6 +37,7 @@ const register = async (req, res) => {
       res.status(201).json({
         token,
         user: {
+          role: "client",
           name: result.name,
           email: result.email,
         },

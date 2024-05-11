@@ -20,6 +20,11 @@ const userSchema = Schema(
       type: String,
       minlength: 3,
     },
+    role: {
+      type: String,
+      enum: ["author", "client"],
+      default: "client",
+    },
     token: {
       type: String,
       default: null,
@@ -32,6 +37,7 @@ const registerSchema = Joi.object({
   name: Joi.string().min(3).required(),
   email: Joi.string().pattern(emailRegExp).required(),
   password: Joi.string().min(6).required(),
+  role: Joi.string().valueOf("author", "client"),
 });
 
 const loginSchema = Joi.object({
@@ -43,9 +49,14 @@ const emailSchema = Joi.object({
   email: Joi.string().pattern(emailRegExp).required(),
 });
 
+const roleSchema = Joi.object({
+  role: Joi.string().valid("author", "client").required(),
+});
+
 const schemas = {
   register: registerSchema,
   login: loginSchema,
+  role: roleSchema,
   email: emailSchema,
 };
 

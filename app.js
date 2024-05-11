@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
 const bookRouter = require("./routes/api/books");
+const orderRouter = require("./routes/api/orders");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/users/", authRouter);
 app.use("/books/", bookRouter);
+app.use("/orders/", orderRouter);
 
 app.use(express.static("public"));
 app.use((_, res) => {

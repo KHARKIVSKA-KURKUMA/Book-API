@@ -39,6 +39,7 @@ const register = async (req, res) => {
         user: {
           role: "client",
           name: result.name,
+          id: user._id,
           email: result.email,
         },
       });

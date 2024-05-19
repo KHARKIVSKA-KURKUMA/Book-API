@@ -34,12 +34,13 @@ const register = async (req, res) => {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     if (result) {
       await User.findByIdAndUpdate(result._id, { token });
+
       res.status(201).json({
         token,
         user: {
           role: "client",
           name: result.name,
-          id: user._id,
+          id: result._id,
           email: result.email,
         },
       });
